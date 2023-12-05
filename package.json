@@ -1,0 +1,36 @@
+{
+  "name": "learning-javascript",
+  "version": "1.0.0",
+  "description": "Class modules with Zell Liew",
+  "main": "all.min.js",
+  "scripts": {
+    "validate": "html-validator **/*/*.html",
+    "scss-to-css": "sass -w scss:css --style expanded",
+    "autoprefixer": "postcss -u autoprefixer --autoprefixer.browsers '&gt; 5%, ie 11' -r css",
+    "css-minified": "sass --style compressed -w scss/styles.scss:css/styles.min.css",
+    "js-combine-compress": "terser node_modules/gsap/dist/gsap.min.js node_modules/zl-fetch/src/index.js js/main.js -o js/all.min.js -c -m --source-map root='https://localhost/edu/learning-javascript',url='all.min.js.map'",
+    "build-css": "npm run scss-to-css && npm run autoprefixer & npm run css-minified",
+    "build-js": "npm run js-combine-compress",
+    "watch-css": "run-p build-css",
+    "watch-js": "run-p build-js",
+    "start": "run-p build*"
+  },
+  "author": "Nick Doyle",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "debug": "^4.3.4",
+    "dompurify": "^3.0.6",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "prettier": "^3.1.0",
+    "sass": "^1.69.5",
+    "terser": "^5.24.0",
+    "w3c-html-validator": "^1.6.1",
+    "zl-fetch": "^6.0.2"
+  },
+  "dependencies": {
+    "gsap": "^3.12.3"
+  }
+}
