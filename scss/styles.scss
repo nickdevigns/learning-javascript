@@ -136,6 +136,10 @@ a:active {
   padding-left: 3em;
 }
 
+.accordion.is-open .accordion__content {
+  display: grid;
+}
+
 .accordion__content svg {
   width: 10em;
   max-width: 100%;
