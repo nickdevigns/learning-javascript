@@ -1,5 +1,4 @@
 // Start writing JavaScript here!
-alert('Hello World!')
 // FIXME: Error
 // TODO: Work to do for yourself
 const carousel = document.querySelector('.carousel')
@@ -9,6 +8,9 @@ const contents = document.querySelector('.carousel__contents')
 const dots = Array.from(carousel.querySelectorAll('.carousel__dot'))
 const slides = Array.from(carousel.querySelectorAll('.carousel__slide'))
 const dotsContainer = carousel.querySelector('.carousel__dots')
+
+const slideWidth = slides[0].getBoundingClientRect().width
+// console.log(slideWidth) //867 (This may be a different number in your case. It depends on the width of your browser).
 
 nextButton.addEventListener('click', e => {
   const currentSlide = contents.querySelector('.is-selected')
@@ -63,7 +65,7 @@ dots.forEach(dot => {
         clickedDotIndex = index
       }
     }
-    console.log(clickedDotIndex) // 0, 1, 2
+    // console.log(clickedDotIndex) // 0, 1, 2
 
     const slideToShow = slides[clickedDotIndex]
     // console.log(slideToShow) //<li class="carousel__slide is-selected">... -OR- <li class="carousel__slide">
@@ -96,4 +98,8 @@ dots.forEach(dot => {
       nextButton.removeAttribute('hidden')
     }
   })
+})
+
+slides.forEach((slide, index) => {
+  slide.style.left = slideWidth * index + 'px'
 })
