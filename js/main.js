@@ -2,7 +2,7 @@
 // FIXME: Error
 // TODO: Work to do for yourself
 
-// First Attempt
+// //First Attempt
 /* // const accordion = document.querySelector(".accordion")
 // const accordionHeader = document.querySelector(".accordion__header")
 
@@ -15,7 +15,7 @@
 //   accordion.classList.toggle("is-open")
 // }); */
 
-// Second Attempt
+// // Second Attempt
 /* const accordions = document.querySelectorAll(".accordion")
 
 // Finds first and second accordion
@@ -35,13 +35,34 @@ secondAccordionHeader.addEventListener("click", (e) => {
   secondAccordion.classList.toggle("is-open")
 }); */
 
-// Final Attempt
-const accordions = Array.from(document.querySelectorAll('.accordion'))
-accordions.forEach((accordion) => {
-  // Find the accordion header
-  const accordionHeader = accordion.querySelector('.accordion__header')
-  // Add event listener to the accordion header
-  accordionHeader.addEventListener('click', e => {
+// // Final Attempt for C4L7
+// const accordions = Array.from(document.querySelectorAll('.accordion'))
+// accordions.forEach((accordion) => {
+//   // Find the accordion header
+//   const accordionHeader = accordion.querySelector('.accordion__header')
+//   // Add event listener to the accordion header
+//   accordionHeader.addEventListener('click', e => {
+//     accordion.classList.toggle('is-open')
+//   })
+// })
+
+// Final Attempt using Event Delegation
+const accordionContainer = document.querySelector('.accordion-container'
+)
+// Attach the event listener to the nearest common ancestor
+accordionContainer.addEventListener('click', e => {
+  // console.log(e.target) // This returns the click target results <button>, <svg>, <p>...
+  // If accordion__header is an ancestor of the event target, we need to add/remove (toggle) the 'is-open' class to the accordion
+  const accordionHeader = e.target.closest('.accordion__header')
+  // // We want to show/hide the accordion if the user clicked inside the accordion__header, but not if the user clicked inside the accordion__content
+  // if (accordionHeader) {
+  //   console.log('From header. Close accordion!')
+  // } else {
+  //   console.log('Not from the header. Ingore.')
+  // }
+  if (accordionHeader) {
+    // We know that the accordion is the parent element of the accordion__header
+    const accordion = accordionHeader.parentElement
     accordion.classList.toggle('is-open')
-  })
+  }
 })
