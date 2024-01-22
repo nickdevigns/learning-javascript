@@ -9,6 +9,7 @@ const dots = Array.from(carousel.querySelectorAll('.carousel__dot'))
 const slides = Array.from(carousel.querySelectorAll('.carousel__slide'))
 const dotsContainer = carousel.querySelector('.carousel__dots')
 
+// Position slides
 const slideWidth = slides[0].getBoundingClientRect().width
 // console.log(slideWidth) //867 (This may be a different number in your case. It depends on the width of your browser).
 
@@ -19,10 +20,15 @@ nextButton.addEventListener('click', e => {
   // console.log(nextSlide) // <li class="carousel__slide is-selected">
   const destination = getComputedStyle(nextSlide).left
   // console.log(destination) // 0, 800, 1600px
+
+  // Shows next slide
   contents.style.left = '-' + destination
   currentSlide.classList.remove('is-selected')
   nextSlide.classList.add('is-selected')
+
+  // Shows previous button
   previousButton.removeAttribute('hidden')
+
   // Hides next button
   if (!nextSlide.nextElementSibling) {
     nextButton.setAttribute('hidden', true)
@@ -40,14 +46,20 @@ previousButton.addEventListener('click', e => {
   // console.log(previousSlide) // <li class="carousel__slide is-selected">
   const destination = getComputedStyle(previousSlide).left
   // console.log(destination) // 0, 800, 1600px
+
+  // Shows previous slide
   contents.style.left = '-' + destination
   currentSlide.classList.remove('is-selected')
   previousSlide.classList.add('is-selected')
+
+  // Shows next button
   nextButton.removeAttribute('hidden')
+
   // Hides previous button
   if (!previousSlide.previousElementSibling) {
     previousButton.setAttribute('hidden', true)
   }
+
   // Highlight dot
   const currentDot = dotsContainer.querySelector('.is-selected')
   const previousDot = currentDot.previousElementSibling
